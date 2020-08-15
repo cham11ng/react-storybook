@@ -17,12 +17,12 @@ export function Task({ task: { id, title, state }, onPinTask, onArchiveTask }: a
       </div>
       <div className="actions">
         {state !== 'TASK_ARCHIVED' && (
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
+          // eslint-disable-next-line
           <a onClick={() => onPinTask(id)}>
             <span className={`icon-star`} />
           </a>
         )}
       </div>
     </div>
-  )
+  );
 }
