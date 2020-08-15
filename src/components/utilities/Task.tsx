@@ -1,6 +1,16 @@
 import React from 'react';
 
-export function Task({ task: { id, title, state }, onPinTask, onArchiveTask }: any) {
+interface TaskProps {
+  task: {
+    id: string;
+    title: string;
+    state: string;
+  },
+  onPinTask: (value: string) => void,
+  onArchiveTask: (value: string) => void;
+}
+
+const Task: React.FC<TaskProps> = ({ task: { id, title, state }, onPinTask, onArchiveTask }: any) => {
   return (
     <div className={`list-item ${state}`}>
       <label className="checkbox">
@@ -26,3 +36,5 @@ export function Task({ task: { id, title, state }, onPinTask, onArchiveTask }: a
     </div>
   );
 }
+
+export default Task;

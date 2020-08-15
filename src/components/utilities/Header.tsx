@@ -1,11 +1,11 @@
 import React from 'react';
 
-import '../../assets/css/header.css'
+import '../../assets/css/header.css';
 
 import { Button } from './Button';
 
 export interface HeaderProps {
-  user?: {};
+  user?: Record<string, unknown>;
   onLogin: () => void;
   onLogout: () => void;
   onCreateAccount: () => void;

@@ -22,7 +22,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,6 +52,7 @@
     "babel-loader": "^8.1.0",
     "eslint": "^6.6.0",
     "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "react-is": "^16.13.1"
   },
   "husky": {
@@ -62,7 +63,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+      "eslint --fix"
     ]
   }
 }

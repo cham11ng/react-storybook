@@ -1,13 +1,14 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions'
+import { action } from '@storybook/addon-actions';
 
-import { Task } from '../components/utilities/Task';
+import Task from '../components/utilities/Task';
+import { Story } from '@storybook/react/types-6-0';
 
 export default {
   component: Task,
   title: 'Task',
   excludeStories: /.*Data$/
-}
+};
 
 interface TaskData {
   id: string;
@@ -16,22 +17,21 @@ interface TaskData {
   updatedAt: Date;
 }
 
-export const taskData: TaskData = {
+export const taskData = {
   id: '1',
   title: 'Foo Bar',
-  state: 'TASK_INBOX',
-  updatedAt: new Date(2020, 0, 1, 9, 0)
-}
+  state: 'TASK_INBOX'
+};
 
 export const actionsData = {
   onPinTask: action('onPinTask'),
   onArchiveTask: action('onArchiveTask')
-}
+};
 
-export const Default = () => <Task task={{ ...taskData }} {...actionsData } />;
+export const Default: Story = () => <Task task={taskData} {...actionsData} />;
 
-export const Pinned = () => <Task task={{ ...taskData, state: 'TASK_PINNED' }} {...actionsData } />;
+export const Pinned: Story = () => <Task task={{ ...taskData, state: 'TASK_PINNED' }} {...actionsData} />;
 
-export const Archived = () => (
-  <Task task= {{ ...taskData, state: 'TASK_ARCHIVED' }} {...actionsData } />
+export const Archived: Story = () => (
+  <Task task={{ ...taskData, state: 'TASK_ARCHIVED' }} {...actionsData} />
 );
