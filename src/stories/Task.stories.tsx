@@ -1,8 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-
-import Task from '../components/utilities/Task';
 import { Story } from '@storybook/react/types-6-0';
+
+import Task from '../components/utilities/task/Task';
 
 export default {
   component: Task,

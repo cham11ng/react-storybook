@@ -1,11 +1,13 @@
 import React from 'react';
 
+interface Task {
+  id: string;
+  title: string;
+  state: string;
+}
+
 interface TaskProps {
-  task: {
-    id: string;
-    title: string;
-    state: string;
-  },
+  task: Task,
   onPinTask: (value: string) => void,
   onArchiveTask: (value: string) => void;
 }
@@ -20,7 +22,7 @@ const Task: React.FC<TaskProps> = ({ task: { id, title, state }, onPinTask, onAr
           disabled={true}
           name="checked"
         />
-        <span className="checkbox-custom" onClick={() => onArchiveTask} />
+        <span className="checkbox-custom" onClick={() => onArchiveTask(id)} />
       </label>
       <div className="title">
         <input type="text" value={title} readOnly={true} />
