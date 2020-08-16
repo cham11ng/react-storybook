@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 interface Task {
   id: string;
@@ -36,7 +36,7 @@ const Task: React.FC<TaskProps> = ({ task: { id, title, state }, onPinTask, onAr
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Task;
+export default Task

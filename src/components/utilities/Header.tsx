@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import '../../assets/css/header.css';
+import '../../assets/css/header.css'
 
-import { Button } from './Button';
+import { Button } from './Button'
 
 export interface HeaderProps {
   user?: Record<string, unknown>;
@@ -45,4 +45,4 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogin, onLogout, onCreat
       </div>
     </div>
   </header>
-);
+)

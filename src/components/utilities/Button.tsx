@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import '../../assets/css/button.css';
+import '../../assets/css/button.css'
 
 export interface ButtonProps {
   /**
@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   label,
   ...props
 }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary'
   return (
     <button
       type="button"
@@ -45,5 +45,5 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {label}
     </button>
-  );
-};
+  )
+}

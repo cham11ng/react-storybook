@@ -1,8 +1,8 @@
 // src/components/TaskList.js
 
-import React from 'react';
+import React from 'react'
 
-import Task from './Task';
+import Task from './Task'
 
 interface TaskListProps {
   loading?: boolean,
@@ -15,7 +15,7 @@ const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, 
   const events = {
     onPinTask,
     onArchiveTask,
-  };
+  }
 
   const LoadingRow = (
     <div className="loading-item">
@@ -24,7 +24,7 @@ const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, 
         <span>Loading</span> <span>cool</span> <span>state</span>
       </span>
     </div>
-  );
+  )
 
   if (loading) {
     return (
@@ -36,7 +36,7 @@ const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, 
         {LoadingRow}
         {LoadingRow}
       </div>
-    );
+    )
   }
 
   if (tasks.length === 0) {
@@ -48,13 +48,13 @@ const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, 
           <div className="subtitle-message">Sit back and relax</div>
         </div>
       </div>
-    );
+    )
   }
 
   const tasksInOrder = [
     ...tasks.filter(t => t.state === 'TASK_PINNED'),
     ...tasks.filter(t => t.state !== 'TASK_PINNED'),
-  ];
+  ]
 
   return (
     <div className="list-items">
@@ -62,7 +62,7 @@ const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, 
         <Task key={task.id} task={task} {...events} />
       ))}
     </div>
-  );
+  )
 }
 
-export default TaskList;
+export default TaskList
