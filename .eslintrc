@@ -16,6 +16,7 @@
   },
   "rules": {
     "semi": [2, "never"],
+    "quotes": [2, "single", { "avoidEscape": true }],
     "react/prop-types": 0,
     "@typescript-eslint/no-unused-vars": [
       2,

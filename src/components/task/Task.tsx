@@ -1,24 +1,21 @@
 import React from 'react'
 
-interface Task {
-  id: string;
-  title: string;
-  state: string;
-}
+import ITask from '../../resources/domain/entity/ITask'
+import TaskStatus from '../../resources/enums/TaskStatus'
 
 interface TaskProps {
-  task: Task,
-  onPinTask: (value: string) => void,
-  onArchiveTask: (value: string) => void;
+  task: ITask,
+  onPinTask: (value: number) => void,
+  onArchiveTask: (value: number) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ task: { id, title, state }, onPinTask, onArchiveTask }: any) => {
+const Task: React.FC<TaskProps> = ({ task: { id, title, state }, onPinTask, onArchiveTask }) => {
   return (
     <div className={`list-item ${state}`}>
       <label className="checkbox">
         <input
           type="checkbox"
-          defaultChecked={state === "TASK_ARCHIVED"}
+          defaultChecked={state === TaskStatus.ARCHIVED}
           disabled={true}
           name="checked"
         />
@@ -28,11 +25,10 @@ const Task: React.FC<TaskProps> = ({ task: { id, title, state }, onPinTask, onAr
         <input type="text" value={title} readOnly={true} />
       </div>
       <div className="actions">
-        {state !== 'TASK_ARCHIVED' && (
-          // eslint-disable-next-line
-          <a onClick={() => onPinTask(id)}>
-            <span className={`icon-star`} />
-          </a>
+        {state !== TaskStatus.ARCHIVED && (
+          <span onClick={() => onPinTask(id)}>
+            <span className="icon-star" />
+          </span>
         )}
       </div>
     </div>

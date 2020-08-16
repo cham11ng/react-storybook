@@ -1,21 +1,14 @@
-// src/components/TaskList.js
-
-import React from 'react'
+import React, { useContext } from 'react'
 
 import Task from './Task'
+import { changeStatus } from '../../actions/task'
+import { UIContext } from '../../contexts/UIContext'
+import { TaskContext } from '../../contexts/TaskContext'
+import TaskStatus from '../../resources/enums/TaskStatus'
 
-interface TaskListProps {
-  loading?: boolean,
-  tasks: Task[],
-  onPinTask: () => void,
-  onArchiveTask: () => void
-}
-
-const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, onArchiveTask }) => {
-  const events = {
-    onPinTask,
-    onArchiveTask,
-  }
+const TaskList: React.FC = () => {
+  const { ui } = useContext(UIContext)
+  const { tasks, dispatch } = useContext(TaskContext)
 
   const LoadingRow = (
     <div className="loading-item">
@@ -26,7 +19,7 @@ const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, 
     </div>
   )
 
-  if (loading) {
+  if (ui.isLoading) {
     return (
       <div className="list-items">
         {LoadingRow}
@@ -52,14 +45,15 @@ const TaskList: React.FC<TaskListProps> = ({ loading = false, tasks, onPinTask, 
   }
 
   const tasksInOrder = [
-    ...tasks.filter(t => t.state === 'TASK_PINNED'),
-    ...tasks.filter(t => t.state !== 'TASK_PINNED'),
+    ...tasks.filter(t => t.state === TaskStatus.PINNED),
+    ...tasks.filter(t => t.state !== TaskStatus.PINNED),
   ]
 
   return (
     <div className="list-items">
       {tasksInOrder.map(task => (
-        <Task key={task.id} task={task} {...events} />
+        <Task key={task.id} task={task}
+        onPinTask={(id) => dispatch(changeStatus(id, TaskStatus.PINNED))} onArchiveTask={(id) => dispatch(changeStatus(id, TaskStatus.ARCHIVED))} />
       ))}
     </div>
   )

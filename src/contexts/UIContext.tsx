@@ -1,7 +1,7 @@
-import React, { createContext, useReducer } from "react"
+import React, { createContext, useReducer } from 'react'
 
 import { UIActions } from '../actions/ui'
-import { reducer, initialState } from "../reducers/ui"
+import { reducer, initialState } from '../reducers/ui'
 import UIState from '../resources/domain/state/UIState'
 
 

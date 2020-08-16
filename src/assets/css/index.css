@@ -859,16 +859,16 @@ a:focus {
   transition: all 200ms ease-in;
   padding-right: 20px;
 }
-.list-item .actions a {
+.list-item .actions span {
   display: inline-block;
   vertical-align: top;
   text-align: center;
   color: #eee;
 }
-.list-item .actions a:hover {
+.list-item .actions span:hover {
   color: #2cc5d2;
 }
-.list-item .actions a:active {
+.list-item .actions span:active {
   color: #555;
 }
 .list-item .actions [class^="icon-"] {
@@ -877,10 +877,10 @@ a:focus {
   line-height: 3rem;
   text-align: center;
 }
-.list-item.TASK_PINNED .icon-star {
+.list-item.pinned .icon-star {
   color: #2cc5d2;
 }
-.list-item.TASK_ARCHIVED input[type="text"] {
+.list-item.archived input[type="text"] {
   color: #aaa;
 }
 .list-item:hover {
@@ -994,4 +994,36 @@ a:focus {
   display: inline-block;
   vertical-align: top;
   max-width: 100%;
+}
+
+.add-task {
+  width: 30rem;
+  height: 12rem;
+  margin: auto;
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.3rem;
+}
+
+.add-task input {
+  display: block;
+  margin: auto;
+  margin-bottom: 0.5rem;
+  width: 20rem;
+  padding: 0.5rem;
+  border: 1px solid #333;
+  border-radius: 0.3rem;
+}
+
+.add-task button {
+  width: 21rem;
+  padding: 0.7rem;
+  border: 1px solid #333;
+  background: #333;
+  color: #eee;
+  border-radius: 0.3rem;
 }

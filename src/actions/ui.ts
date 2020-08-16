@@ -1,8 +1,6 @@
-export const SET_STATE = 'SET_STATE'
+import UIPayload from '../resources/domain/payload/UIPayload'
 
-interface UIPayload {
-  isLoading?: boolean
-}
+export const SET_STATE = 'SET_STATE'
 
 interface ASetState {
   type: typeof SET_STATE,

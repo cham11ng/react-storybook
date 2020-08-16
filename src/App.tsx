@@ -1,15 +1,13 @@
 import React from 'react'
 
-import Articles from './containers/Articles'
-import AddArticle from './components/articles/AddArticle'
-import { ArticleProvider } from './contexts/ArticleContext'
+import Tasks from './containers/Tasks'
+import { UIProvider } from './contexts/UIContext'
 
 const App: React.FC = () => {
   return (
-    <ArticleProvider>
-      <AddArticle />
-      <Articles />
-    </ArticleProvider>
+    <UIProvider>
+      <Tasks />
+    </UIProvider>
   )
 }
 
