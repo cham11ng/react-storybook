@@ -2,7 +2,7 @@ import { Story } from '@storybook/react/types-6-0'
 import React, { ReactElement, ReactNode } from "react"
 
 import { taskData, actionsData } from "./Task.stories"
-import TaskList from '../components/utilities/task/TaskList'
+import TaskList from '../components/task/TaskList'
 
 export default {
   component: TaskList,
