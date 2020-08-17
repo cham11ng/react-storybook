@@ -38,7 +38,7 @@ const AddTask: React.FC = () => {
         placeholder="Title"
         onChange={handleTaskData}
       />
-      <button>Add article</button>
+      <button>Add Task</button>
     </form>
   )
 }

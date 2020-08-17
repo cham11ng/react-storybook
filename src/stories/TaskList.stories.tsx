@@ -6,6 +6,13 @@ import { UIContext } from '../contexts/UIContext'
 import TaskList from '../components/task/TaskList'
 import { TaskContext } from '../contexts/TaskContext'
 import TaskStatus from '../resources/enums/TaskStatus'
+import UIState from '../resources/domain/state/UIState'
+import TaskState from '../resources/domain/state/TaskState'
+
+interface TemplateProps {
+  ui: UIState,
+  tasks: TaskState
+}
 
 export default {
   component: TaskList,
@@ -19,82 +26,66 @@ export default {
 }
 
 export const defaultTasksData = [
-  { ...taskData, id: 1, title: 'Task 1' },
-  { ...taskData, id: 2, title: 'Task 2' },
-  { ...taskData, id: 3, title: 'Task 3' },
-  { ...taskData, id: 4, title: 'Task 4' },
-  { ...taskData, id: 5, title: 'Task 5' },
-  { ...taskData, id: 6, title: 'Task 6' },
+  { ...taskData, id: 1, title: 'Install CRA' },
+  { ...taskData, id: 2, title: 'Install React via CRA' },
+  { ...taskData, id: 3, title: 'Install Storybook' },
+  { ...taskData, id: 4, title: 'Setup ESLint' },
+  { ...taskData, id: 5, title: 'Implement React Context API' },
+  { ...taskData, id: 6, title: 'Install React Router' },
 ]
 
 export const withPinnedTasksData = [
   ...defaultTasksData.slice(0, 5),
-  { id: 6, title: 'Task 6 (pinned)', state: TaskStatus.PINNED },
+  { id: 6, title: 'Install React Router (pinned)', state: TaskStatus.PINNED },
 ]
 
 export const withPArchivedTasksData = [
   ...defaultTasksData.slice(0, 5),
-  { id: 5, title: 'Task 5 (archived)', state: TaskStatus.ARCHIVED },
+  { id: 6, title: 'Install React Router (archived)', state: TaskStatus.ARCHIVED },
 ]
 
-export const Default: Story = () => {
+const Template: Story<TemplateProps> = ({ ui, tasks }: TemplateProps) => {
   const { dispatch } = useContext(TaskContext)
   const { dispatchUI } = useContext(UIContext)
 
   return (
-  <UIContext.Provider value={{ dispatchUI, ui: { isLoading: false } }}>
-    <TaskContext.Provider value={{ tasks: defaultTasksData, dispatch}}>
-      <TaskList />
-    </TaskContext.Provider>
-  </UIContext.Provider>
-)}
+    <UIContext.Provider value={{ dispatchUI, ui }}>
+      <TaskContext.Provider value={{ dispatch, tasks }}>
+        <TaskList />
+      </TaskContext.Provider>
+    </UIContext.Provider>
+  )
+}
 
-export const WithPinnedTasks: Story = () => {
-  const { dispatch } = useContext(TaskContext)
-  const { dispatchUI } = useContext(UIContext)
+export const Default: Story<TemplateProps> = Template.bind({})
+Default.args = {
+  ui: { isLoading: false },
+  tasks: defaultTasksData
+}
 
-  return (
-  <UIContext.Provider value={{ dispatchUI, ui: { isLoading: false } }}>
-    <TaskContext.Provider value={{ tasks: withPinnedTasksData, dispatch}}>
-      <TaskList />
-    </TaskContext.Provider>
-  </UIContext.Provider>
-)}
+export const WithPinnedTasks: Story<TemplateProps> = Template.bind({})
+WithPinnedTasks.args = {
+  ui: { isLoading: false },
+  tasks: withPinnedTasksData
+}
 
-export const WithArchivedTasks: Story = () => {
-  const { dispatch } = useContext(TaskContext)
-  const { dispatchUI } = useContext(UIContext)
+export const WithArchivedTasks: Story<TemplateProps> = Template.bind({})
+WithArchivedTasks.args = {
+  ui: { isLoading: false },
+  tasks: withPArchivedTasksData
+}
 
-  return (
-  <UIContext.Provider value={{ dispatchUI, ui: { isLoading: false } }}>
-    <TaskContext.Provider value={{ tasks: withPArchivedTasksData, dispatch}}>
-      <TaskList />
-    </TaskContext.Provider>
-  </UIContext.Provider>
-)}
+export const Loading: Story<TemplateProps> = Template.bind({})
+Loading.args = {
+  ui: { isLoading: true },
+  tasks: []
+}
 
-export const Loading: Story = () => {
-  const { dispatch } = useContext(TaskContext)
-  const { dispatchUI } = useContext(UIContext)
+export const Empty: Story<TemplateProps> = Template.bind({})
+Empty.args = {
+  ui: { isLoading: false },
+  tasks: []
+}
 
-  return (
-  <UIContext.Provider value={{ dispatchUI, ui: { isLoading: true } }}>
-    <TaskContext.Provider value={{ tasks: [], dispatch}}>
-      <TaskList />
-    </TaskContext.Provider>
-  </UIContext.Provider>
-)}
-
-export const Empty: Story = () => {
-  const { dispatch } = useContext(TaskContext)
-  const { dispatchUI } = useContext(UIContext)
-
-  return (
-  <UIContext.Provider value={{ dispatchUI, ui: { isLoading: false } }}>
-    <TaskContext.Provider value={{ tasks: [], dispatch}}>
-      <TaskList />
-    </TaskContext.Provider>
-  </UIContext.Provider>
-)}
 
 

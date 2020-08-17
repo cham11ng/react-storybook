@@ -36,7 +36,8 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary'
-  return (
+  
+return (
     <button
       type="button"
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
